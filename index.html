@@ -1,365 +1,250 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EMTP 課程｜糖尿病急症</title>
-  <style>
-    :root {
-      --navy:   #1a2e4a;
-      --teal:   #0d7377;
-      --teal-l: #14a085;
-      --gold:   #e8a820;
-      --bg:     #f4f6f9;
-      --white:  #ffffff;
-      --text:   #2c3e50;
-      --muted:  #7f8c8d;
-      --border: #dce3ea;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif; background: var(--bg); color: var(--text); }
-
-    /* ── Header ── */
-    header {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
-      color: var(--white);
-      padding: 48px 24px 40px;
-      text-align: center;
-    }
-    .badge {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--navy);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      padding: 4px 14px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-    header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; }
-    header p  { font-size: 1rem; opacity: 0.85; }
-
-    /* ── Layout ── */
-    main { max-width: 860px; margin: 0 auto; padding: 36px 20px 60px; }
-
-    /* ── Section titles ── */
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--teal);
-      border-left: 4px solid var(--teal);
-      padding-left: 12px;
-      margin: 36px 0 16px;
-      letter-spacing: 0.5px;
-    }
-
-    /* ── Objectives ── */
-    .objectives {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 24px 28px;
-      border: 1px solid var(--border);
-    }
-    .objectives ol { padding-left: 20px; }
-    .objectives li { padding: 6px 0; line-height: 1.7; }
-
-    /* ── Outline cards ── */
-    .outline-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
-    }
-    .outline-card {
-      background: var(--white);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      padding: 20px 22px;
-    }
-    .outline-card .part-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--muted);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .outline-card h3 {
-      font-size: 1rem;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-    .outline-card ul { list-style: none; padding: 0; }
-    .outline-card ul li {
-      font-size: 0.88rem;
-      color: var(--muted);
-      padding: 3px 0;
-      padding-left: 14px;
-      position: relative;
-    }
-    .outline-card ul li::before {
-      content: '·';
-      position: absolute;
-      left: 2px;
-      color: var(--teal-l);
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    /* ── Resources ── */
-    .resources { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-    .resource-card {
-      background: var(--white);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      padding: 22px 24px;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      text-decoration: none;
-      color: inherit;
-      transition: box-shadow 0.2s, border-color 0.2s;
-    }
-    .resource-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: var(--teal-l); }
-    .resource-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-    .icon-pdf   { background: #fdecea; }
-    .icon-video { background: #fce4ec; }
-    .icon-check { background: #e8f5e9; }
-    .resource-info h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-    .resource-info p  { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-
-    /* ── ISBAR / Video section ── */
-    .video-placeholder {
-      background: var(--white);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      padding: 28px;
-    }
-    .video-row {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .video-row:last-child { border-bottom: none; }
-    .video-thumb {
-      width: 48px;
-      height: 36px;
-      background: #ffebee;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .video-info h4 { font-size: 0.92rem; font-weight: 600; }
-    .video-info a  { font-size: 0.82rem; color: var(--teal); text-decoration: none; }
-    .video-info a:hover { text-decoration: underline; }
-    .video-info .tag-todo {
-      font-size: 0.75rem;
-      background: #fff3cd;
-      color: #856404;
-      border-radius: 4px;
-      padding: 1px 8px;
-      margin-left: 6px;
-    }
-
-    /* ── Comparison table ── */
-    .compare-wrap { overflow-x: auto; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--white);
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      font-size: 0.88rem;
-    }
-    th {
-      background: var(--navy);
-      color: var(--white);
-      padding: 12px 14px;
-      text-align: center;
-      font-weight: 600;
-    }
-    td {
-      padding: 10px 14px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-    }
-    tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) td { background: #f9fbfc; }
-    td:first-child { text-align: left; font-weight: 600; color: var(--navy); }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 28px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>初步評估同步教學系統</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚑</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- ============= 啟動頁 ============= -->
+  <div id="view-home" class="view">
+    <div class="home-card">
+      <h1>初步評估同步教學系統</h1>
+      <p class="subtitle">初級救護技術員 · 創傷與非創傷初步評估</p>
 
-<header>
-  <div class="badge">EMTP 高級救護技術員課程</div>
-  <h1>糖尿病急症</h1>
-  <p>Diabetic Emergencies — 院前緊急救護處置</p>
-</header>
-
-<main>
-
-  <!-- 學習目標 -->
-  <div class="section-title">學習目標</div>
-  <div class="objectives">
-    <ol>
-      <li>了解糖尿病的生理機轉與血糖調節機制</li>
-      <li>辨識四大急性併發症的臨床表現與鑑別診斷</li>
-      <li>掌握院前緊急處置步驟</li>
-      <li>熟悉特殊情境（euDKA、Wernicke 腦病變）的評估與處置</li>
-    </ol>
-  </div>
-
-  <!-- 課程大綱 -->
-  <div class="section-title">課程大綱</div>
-  <div class="outline-grid">
-
-    <div class="outline-card">
-      <div class="part-label">Part 1</div>
-      <h3>糖尿病基礎知識</h3>
-      <ul>
-        <li>正常血糖值與調節</li>
-        <li>胰島素三大機能</li>
-        <li>血糖調節四大機制</li>
-        <li>糖尿病分類</li>
-      </ul>
-    </div>
-
-    <div class="outline-card">
-      <div class="part-label">Part 2</div>
-      <h3>四大急性併發症</h3>
-      <ul>
-        <li>低血糖（Hypoglycemia）</li>
-        <li>糖尿病酮酸中毒（DKA）</li>
-        <li>正常血糖型 DKA（euDKA）</li>
-        <li>高滲透壓高血糖狀態（HHS）</li>
-      </ul>
-    </div>
-
-    <div class="outline-card">
-      <div class="part-label">Part 3</div>
-      <h3>院前現場處置</h3>
-      <ul>
-        <li>安全評估流程</li>
-        <li>病患評估步驟</li>
-        <li>緊急處置（含 50% 葡萄糖）</li>
-        <li>Wernicke 腦病變</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- 四大急症比較表 -->
-  <div class="section-title">四大急性併發症快速比較</div>
-  <div class="compare-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>項目</th>
-          <th>低血糖</th>
-          <th>DKA</th>
-          <th>euDKA</th>
-          <th>HHS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>血糖（mg/dL）</td><td>&lt; 60</td><td>&gt; 350</td><td>&lt; 250</td><td>&gt; 600</td></tr>
-        <tr><td>發病時間</td><td>快速</td><td>12～48 小時</td><td>數小時</td><td>數天</td></tr>
-        <tr><td>呼吸型態</td><td>正常</td><td>Kussmaul</td><td>Kussmaul</td><td>正常</td></tr>
-        <tr><td>意識改變</td><td>常見</td><td>漸進</td><td>漸進</td><td>常見</td></tr>
-        <tr><td>酮體</td><td>無</td><td>有</td><td>有</td><td>無</td></tr>
-        <tr><td>死亡率</td><td>低</td><td>9～14%</td><td>低</td><td>10～50%</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 教學資源 -->
-  <div class="section-title">教學資源</div>
-  <div class="resources">
-
-    <a class="resource-card" href="slides/diabetes.pdf" target="_blank">
-      <div class="resource-icon icon-pdf">📄</div>
-      <div class="resource-info">
-        <h4>投影片（PDF）</h4>
-        <p>糖尿病急症_v2<br>點擊在瀏覽器中開啟</p>
+      <div class="role-grid role-grid-4">
+        <button class="role-btn role-teach" onclick="enterRole('teach')">
+          <div class="role-icon">🎤</div>
+          <div class="role-title">教官 · 開始上課</div>
+          <div class="role-desc">簡潔戳戳樂控制台</div>
+        </button>
+        <button class="role-btn role-admin" onclick="enterRole('admin')">
+          <div class="role-icon">⚙️</div>
+          <div class="role-title">教官 · 後台管理</div>
+          <div class="role-desc">編輯內容、上傳素材</div>
+        </button>
+        <button class="role-btn role-bigscreen" onclick="enterRole('bigscreen')">
+          <div class="role-icon">📺</div>
+          <div class="role-title">大螢幕 / 投影</div>
+          <div class="role-desc">教室電視專用、會出聲</div>
+        </button>
+        <button class="role-btn role-student" onclick="promptStudentJoin()">
+          <div class="role-icon">📱</div>
+          <div class="role-title">我是學員</div>
+          <div class="role-desc">個人手機、預設靜音</div>
+        </button>
       </div>
-    </a>
 
-    <a class="resource-card" href="checklist/EMTP非外傷_低血糖.pdf" target="_blank">
-      <div class="resource-icon icon-check">✅</div>
-      <div class="resource-info">
-        <h4>情境檢核表｜低血糖</h4>
-        <p>EMTP 非外傷情境<br>點擊在瀏覽器中開啟</p>
+      <div class="home-footer">
+        <small id="sync-mode-indicator">同步模式偵測中...</small>
       </div>
-    </a>
-
-    <a class="resource-card" href="checklist/EMTP非外傷_DKA.pdf" target="_blank">
-      <div class="resource-icon icon-check">✅</div>
-      <div class="resource-info">
-        <h4>情境檢核表｜DKA</h4>
-        <p>EMTP 非外傷情境<br>點擊在瀏覽器中開啟</p>
-      </div>
-    </a>
-
-  </div>
-
-  <!-- 影片 -->
-  <div class="section-title">教學影片</div>
-
-  <div style="margin-bottom: 24px;">
-    <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 10px; color: var(--navy);">Whipple's Triad｜低血糖診斷三聯症</div>
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; background: #000;">
-      <iframe
-        src="https://www.youtube.com/embed/f9GBJpw5s0M"
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
     </div>
   </div>
 
-  <div>
-    <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 10px; color: var(--navy);">euDKA｜正常血糖型糖尿病酮酸中毒</div>
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; background: #000;">
-      <iframe
-        src="https://www.youtube.com/embed/rTRvg8jlJ_4"
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
+  <!-- ============= 教官端 ============= -->
+  <div id="view-instructor" class="view hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <strong>⚙️ 後台管理</strong>
+        <span class="room-badge">教室代碼：<code id="instructor-room-code">----</code></span>
+        <button class="ghost-btn" onclick="showJoinInfo()">學員加入資訊</button>
+      </div>
+      <div class="topbar-right">
+        <button class="voice-lock-btn" onclick="toggleStudentVoiceLock()" title="統一控制所有學員的語音播放">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">學員語音：鎖定</span>
+        </button>
+        <button class="ghost-btn" onclick="exportData()">匯出</button>
+        <button class="ghost-btn" onclick="importData()">匯入</button>
+        <input type="file" id="import-file" accept=".json" hidden />
+        <button class="ctrl-btn primary" onclick="switchToTeach()">🎤 回到課堂</button>
+        <button class="ghost-btn danger" onclick="leaveRoom()">離開</button>
+      </div>
+    </header>
+
+    <div class="instructor-layout">
+      <!-- 左側：步驟列表 -->
+      <aside class="sidebar">
+        <div class="protocol-tabs">
+          <button class="tab-btn active" data-protocol="medical" onclick="switchProtocol('medical')">非創傷</button>
+          <button class="tab-btn" data-protocol="trauma" onclick="switchProtocol('trauma')">創傷</button>
+        </div>
+        <ol class="step-list" id="step-list"></ol>
+      </aside>
+
+      <!-- 中間：當前步驟詳細 -->
+      <main class="instructor-main">
+        <div id="step-detail" class="step-detail">
+          <div class="empty-hint">👈 請從左側選擇步驟開始</div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 控制條 -->
+    <footer class="control-bar">
+      <button id="btn-prev" class="ctrl-btn" onclick="prevStep()">◀ 上一步</button>
+      <button id="btn-play-voice" class="ctrl-btn primary" onclick="toggleVoice()">🔊 播放語音</button>
+      <button id="btn-stop-broadcast" class="ctrl-btn" onclick="toggleBroadcast()">📡 廣播中</button>
+      <button id="btn-next" class="ctrl-btn" onclick="nextStep()">下一步 ▶</button>
+    </footer>
+  </div>
+
+  <!-- ============= 教官上課模式 ============= -->
+  <div id="view-teach" class="view hidden">
+    <header class="teach-topbar">
+      <div class="teach-topbar-left">
+        <span class="room-pill">📡 <code id="teach-room-code">----</code></span>
+        <div class="teach-protocol-switch">
+          <button class="protocol-pill active" data-protocol="medical" onclick="teachSwitchProtocol('medical')">非創傷</button>
+          <button class="protocol-pill" data-protocol="trauma" onclick="teachSwitchProtocol('trauma')">創傷</button>
+        </div>
+      </div>
+      <div class="teach-topbar-right">
+        <button class="voice-lock-btn" onclick="toggleStudentVoiceLock()" title="統一控制所有學員的語音播放">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">學員語音：鎖定</span>
+        </button>
+        <button class="ghost-btn" onclick="showJoinInfo()">學員加入</button>
+        <button class="ghost-btn" onclick="switchToAdmin()">⚙️ 後台</button>
+        <button class="ghost-btn danger" onclick="leaveRoom()">離開</button>
+      </div>
+    </header>
+
+    <!-- 純戳戳樂控制台（口述內容只在學員端顯示） -->
+    <nav class="teach-step-dock teach-step-dock-full" id="teach-step-dock"></nav>
+
+  </div>
+
+  <!-- ============= 學員端 ============= -->
+  <div id="view-student" class="view hidden">
+    <header class="topbar student-topbar">
+      <div class="topbar-left">
+        <span class="room-badge">教室：<code id="student-room-code">----</code></span>
+        <span id="sync-status" class="sync-status">⏳ 等待教官開始...</span>
+      </div>
+      <div class="topbar-right">
+        <button class="ghost-btn danger" onclick="leaveRoom()">離開</button>
+      </div>
+    </header>
+
+    <main id="student-main" class="student-main">
+      <div class="empty-hint student-waiting">
+        <div class="big-icon">📡</div>
+        <div>等待教官開始下一個動作</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ============= 大螢幕音訊解鎖覆蓋層 ============= -->
+  <div id="bigscreen-unlock" class="bigscreen-unlock-overlay hidden">
+    <div class="bigscreen-unlock-card">
+      <div class="bigscreen-unlock-icon">🔊</div>
+      <h2>啟動大螢幕聲音</h2>
+      <p>瀏覽器需要一次點擊才能允許自動播放語音。<br>請點下方按鈕開始上課。</p>
+      <button class="bigscreen-unlock-btn" onclick="unlockBigscreenAudio()">點此啟動聲音</button>
+      <small>只需要做一次，課程結束前都會記得</small>
     </div>
   </div>
 
-</main>
+  <!-- ============= 學員加入彈窗 ============= -->
+  <div id="modal-join" class="modal hidden">
+    <div class="modal-card">
+      <h2>加入教室</h2>
+      <input type="text" id="join-room-input" placeholder="輸入 4 位教室代碼" maxlength="4" />
+      <div class="modal-actions">
+        <button class="ctrl-btn" onclick="closeModal('modal-join')">取消</button>
+        <button class="ctrl-btn primary" onclick="confirmJoin()">加入</button>
+      </div>
+    </div>
+  </div>
 
-<footer>
-  EMTP 教學素材 · 僅供課程內部使用 · 如有疑問請聯繫授課教官
-</footer>
+  <!-- ============= 學員加入資訊彈窗 ============= -->
+  <div id="modal-join-info" class="modal hidden">
+    <div class="modal-card wide">
+      <h2>請學員以下列方式加入</h2>
+      <div class="join-info-grid">
+        <div>
+          <h3>方法一：掃描 QR Code</h3>
+          <div id="qr-container" class="qr-box">
+            <div class="qr-fallback">需要 qrcode.js 才能顯示 QR<br><small>請改用方法二</small></div>
+          </div>
+        </div>
+        <div>
+          <h3>方法二：手動輸入</h3>
+          <p>請學員開啟此網址：</p>
+          <code class="url-display" id="join-url">-</code>
+          <button class="ctrl-btn" onclick="copyJoinUrl()">複製網址</button>
+          <p style="margin-top:1rem">或選擇「我是學員」後輸入教室代碼：</p>
+          <div class="big-code" id="big-room-code">----</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="ctrl-btn primary" onclick="closeModal('modal-join-info')">關閉</button>
+      </div>
+    </div>
+  </div>
 
+  <!-- ============= 步驟編輯彈窗 ============= -->
+  <div id="modal-edit-media" class="modal hidden">
+    <div class="modal-card wide">
+      <h2>編輯步驟：<span id="edit-step-title-display">-</span></h2>
+
+      <div class="form-row">
+        <label>步驟標題</label>
+        <input type="text" id="edit-title" />
+      </div>
+
+      <div class="form-row">
+        <label>口述(動作)內容（每行一條）</label>
+        <textarea id="edit-key-points" rows="5" placeholder="一行一個要點"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>學員常見錯誤（每行一條）</label>
+        <textarea id="edit-common-errors" rows="4" placeholder="一行一個常見錯誤"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>語音腳本（按播放鍵朗讀，可即時修改）</label>
+        <textarea id="edit-voice-script" rows="3"></textarea>
+      </div>
+
+      <hr style="border-color: var(--border); margin: 1.5rem 0;" />
+
+      <div class="form-row">
+        <label>圖片（jpg / png / webp）</label>
+        <div id="media-image-preview" class="media-preview"></div>
+        <input type="file" id="upload-image" accept="image/*" onchange="handleMediaUpload('image')" />
+        <button class="ghost-btn" onclick="clearMedia('image')">清除圖片</button>
+      </div>
+
+      <div class="form-row">
+        <label>影片（mp4 / webm）</label>
+        <div id="media-video-preview" class="media-preview"></div>
+        <input type="file" id="upload-video" accept="video/*" onchange="handleMediaUpload('video')" />
+        <button class="ghost-btn" onclick="clearMedia('video')">清除影片</button>
+      </div>
+
+      <div class="modal-actions">
+        <button class="ghost-btn danger" onclick="deleteCurrentEditingStep()" style="margin-right:auto">🗑 刪除此步驟</button>
+        <button class="ghost-btn" onclick="resetStepToDefault()">還原預設</button>
+        <button class="ctrl-btn" onclick="closeModal('modal-edit-media')">取消</button>
+        <button class="ctrl-btn primary" onclick="saveStepEdits()">儲存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK（compat 版本，不需要 module bundler） -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+
+  <script src="js/content-sync.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
